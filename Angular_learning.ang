@@ -16,3 +16,13 @@ go to pnpm.org  and use it to download massive packages your Hdd cannot handle
 run
 ng new my-app
 accept defaults with accept and return key
+
+cd my-app
+ng serve
+
+its running
+
+180° editing components 180°
+in src/app/app.component.ts
+change title to My First Angular App
+
