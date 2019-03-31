@@ -1,0 +1,18 @@
+---
+  0 debug pnpm:scope: 
+    selected: 1
+    workspacePrefix: null
+  1 debug pnpm: 
+    isCaseSensitive: null
+    store: "/home/uoul/.pnpm-store/2"
+  2 error pnpm: 
+    message: 
+      errno: -13
+      code: "EACCES"
+      syscall: "mkdir"
+      path: "/home/uoul/.pnpm-store/2/_locks/71d03decebc971c7a022c2394647684e0e3c39fa.lock"
+    err: 
+      name: "Error"
+      message: "EACCES: permission denied, mkdir '/home/uoul/.pnpm-store/2/_locks/71d03decebc971c7a022c2394647684e0e3c39fa.lock'"
+      code: "EACCES"
+      stack: "Error: EACCES: permission denied, mkdir '/home/uoul/.pnpm-store/2/_locks/71d03decebc971c7a022c2394647684e0e3c39fa.lock'"
