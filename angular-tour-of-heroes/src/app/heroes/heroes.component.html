@@ -1,20 +1,20 @@
 <!--6-->
-<div *ngIf="selectedHero">
+<!--<div *ngIf="selectedHero">-->
 
 
-<h2>{{selectedHero.name | uppercase}} Details</h2>
-<div><span>id: </span>{{selectedHero.id}}</div>
+<!--<h2>{{selectedHero.name | uppercase}} Details</h2>-->
+<!--<div><span>id: </span>{{selectedHero.id}}</div>-->
 
 <!--5-->
-<div>
-  <label>name:
+<!--<div>-->
+<!--  <label>name:-->
     <!--<input [(ngModel)]="hero.name" placeholder="name"/>-->
-    <input [(ngModel)]="selectedHero.name" placeholder="name"/>
-  </label>
-</div>
+<!--    <input [(ngModel)]="selectedHero.name" placeholder="name"/>-->
+<!--  </label>-->
+<!--</div>-->
 <!---->
 
-</div>
+<!--</div>-->
 <!---->
 
 
@@ -33,3 +33,7 @@
   <!---->
 </ul>
 <!---->
+
+<!--8-->
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+<!--represnets whats going on in 6 in a different component you just need some extra things-->
