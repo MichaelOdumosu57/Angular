@@ -19,10 +19,30 @@ accept defaults with accept and return key
 
 cd my-app
 ng serve
-
+--open opens the app in your defualt browser
 its running
 
 180° editing components 180°
 in src/app/app.component.ts
 change title to My First Angular App
+
+the css is like regular HTML programming added it to apply  a style
+
+
+90° Tour of Heroes 90°
+
+270°Angular is made of Components there are modular versios of React but simpler
+    the class file is the .ts
+    the template file is the .html
+
+270°  replace this with anything you want
+      <h1>{{title}}</h1>
+      it related to the class file
+      so the template puts on the class file like clothes
+
+270°
+    src/ is like a global that all components must use
+    especially in src styles
+
+
 
