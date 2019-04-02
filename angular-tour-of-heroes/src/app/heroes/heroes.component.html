@@ -25,15 +25,19 @@
   <!--  <span class="badge">{{hero.id}}</span> {{hero.name}}-->
   <!--</li>-->
   <!--7-->
-  <li *ngFor="let hero of heroes"
-      [class.selected]="hero === selectedHero"
-      (click)="onSelect(hero)">
+  <!--<li *ngFor="let hero of heroes"-->
+  <!--    [class.selected]="hero === selectedHero"-->
+  <!--    (click)="onSelect(hero)">-->
+  <!--19-->
+  <li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}">
+    <!---->
         <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
   </li>
   <!---->
 </ul>
 <!---->
 
 <!--8-->
-<app-hero-detail [hero]="selectedHero"></app-hero-detail>
-<!--represnets whats going on in 6 in a different component you just need some extra things-->
+<!--<app-hero-detail [hero]="selectedHero"></app-hero-detail>-->
