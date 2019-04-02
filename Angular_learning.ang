@@ -196,4 +196,69 @@ the css is like regular HTML programming added it to apply  a style
         /src/app/messages/messages.component.ts
            
     
+180°
+    <!--14-->
+    App routing
+    in Angular, the best practice is to load and configure the router in a separate, top-level module that is dedicated to routing and imported by the root AppModule.
+--flat puts the file in src/app instead of its own folder.
+--module=app tells the CLI to register it in the imports array of the AppModule.
+    files: /src/app/app-routing.module.ts
+    
+270°
+    <!--15-->
+    Routes
+        when you navigate to localhost:4200/heroes you get the HeroesComponent its the same with  nginx routing
+        You first must initialize the router and start it listening for browser location changes.
+        I removes the Heroes-Component because you only want it when the user navigates to it
+        you can make things work by moving codeblocks around
+    files:app-routing.module.ts
+        files:/src/app/app.component.html
+        
+
+180°
+    <!--16-->
+    Navigation
+    add a nav and anchor element
+    file:/src/app/app.component.html
+    
+180°
+    <!--17-->
+    Add a dashboard
+    ng generate component dashboard
+    folder /src/app/dashboard
+        /src/app/app-routing.module.ts
+    
+270°
+    <!--18-->
+    Add a default route
+    files: /src/app/app-routing.module.ts
+            /src/app/app.component.html
+                
+270°
+    <!--19-->
+    add a hero detail route that hides that hero list from the heroes compoinet
+    use : for routing parameters
+    using interpolation binding to properly connect things
+    tie the Heroes Component and Details Component together
+    files:/src/app/app-routing.module.ts
+        /src/app/dashbord/dashbord.component.html
+        
+270°
+    <!--20-->
+    Routable HeroDetailComponent
+    now heroe detail needs a way to grab that from the routing and ask the service from HeroService and grab the data it needs from the server
+    ActivatedRoute has info about the route
+    files:/src/app/hero-detail/hero-detail.component.ts
+    
+270°
+    <!--21-->
+    if you go back in the browser you can move around in the app
+    files:/src/app/hero-detail/hero-detail.component.ts
+          /src/app/hero-detail/hero-detail.component.html
+          
+180°
+    <!--22-->
+    using Angular's HttpClient.
+    communciate with remote server over http
+    file:/src/app/app.module.ts
     
