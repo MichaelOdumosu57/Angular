@@ -28,7 +28,7 @@ private log(message: string) {
 }
 private heroesUrl = 'api/heroes';  // URL to web api
 getHeroes (): Observable<Hero[]> {
-  return this.http.get<Hero[]>(this.heroesUrl)
+    return this.http.get<Hero[]>(this.heroesUrl)
 }
     // <!---->
 //  constructor() { }

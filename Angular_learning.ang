@@ -260,5 +260,6 @@ the css is like regular HTML programming added it to apply  a style
     <!--22-->
     using Angular's HttpClient.
     communciate with remote server over http
+    for express try to send what the ts fn demands
     file:/src/app/app.module.ts
     
