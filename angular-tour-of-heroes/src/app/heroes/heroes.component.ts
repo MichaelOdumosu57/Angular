@@ -28,10 +28,10 @@ export class HeroesComponent implements OnInit {
         }
     <!----> */
     // <!--12-->
-        getHeroes(): void {
-            this.heroService.getHeroes()
-          .subscribe(heroes => this.heroes = heroes);
-        }
+    getHeroes(): void {
+        this.heroService.getHeroes()
+      .subscribe(heroes => this.heroes = heroes);
+    }
     //<!---->
     // <!--10-->
     constructor(private heroService: HeroService) { }

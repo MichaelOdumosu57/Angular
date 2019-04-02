@@ -188,6 +188,12 @@ the css is like regular HTML programming added it to apply  a style
            heroes.component.ts
 
 180°
+    <!--13-->
+    Showing messages
+    bascially executes that the service went through properly
+    files:app.component.html
+        /src/app/message.service.ts
+        /src/app/messages/messages.component.ts
            
     
     
