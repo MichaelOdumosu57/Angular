@@ -260,6 +260,26 @@ the css is like regular HTML programming added it to apply  a style
     <!--22-->
     using Angular's HttpClient.
     communciate with remote server over http
-    for express try to send what the ts fn demands
+    for express try to send what the ts fnd demands
+        An observable from HttpClient always emits a single value AND thats it
+        it can doe it mulitple times however
+    HttpClient.get returns the body of the response as an untyped JSON object by default.
     file:/src/app/app.module.ts
+    /AngularBackend/template_app.js
+    
+270°
+    <!--23-->
+    Error handling
+    pipe result through RxJS catchError() operator.
+    you can do what you want there
+    file:/src/app/hero.service.ts
+    
+270°
+    <!--24-->
+    Tap into the observable
+    passes them along to whoever needs it
+    file:/src/app/hero.service.ts
+    
+    
+    
     

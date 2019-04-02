@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 // <!--22-->
 import { HttpClientModule }    from '@angular/common/http';
 // <!---->
+
 @NgModule({
   declarations: [
     AppComponent,
