@@ -134,3 +134,60 @@ the css is like regular HTML programming added it to apply  a style
     [class.[className]]="hero === selectedHero"
     files:heroes.component.html
         
+180°
+    <!--8-->
+    you want larger apps to maintain smaller ones
+    so there are different component we have differnt ways to attach things
+    property biding is present in the subComponent and the @Input decorator is needed to function properly
+    files
+    files:hero-detail.component.ts
+        :hero-detail.component.html
+        :heroes.component.html
+        
+
+180°
+    <!--9-->
+    you want services
+        they rely on this dependecy injection system
+    to do this
+    ng generate service hero
+    files:hero.service.ts
+    files:hero.service.spec.ts
+    
+    it has a @Injectable decorator
+    
+270°
+    <!--9-->
+    this hero service component can grab data from anywhere
+    
+    you must make this availble to the dependecy injection system (DIS) by regeristing a provider
+    provider creates or delivers a services
+    HeroService must be registered as the provider of the service you set up an injector which is repsoible for putting
+    the service in the right place
+    in the Injectable decorator when its provided in the root it can remove it if its not needed
+    
+270°
+    <!--10-->
+    instrsting things happen a singleton instance
+    now a service is running in your app
+    file:heroes.component.ts
+    
+270°
+    <!--11-->
+    call the service
+    is should be called in ngOnInit not in the constructor, the constructor shouldnt do anything
+    so services need to be injected and special care must be taken
+    
+180°
+     <!--12-->
+    the service operates sync, but in a real world app we need this done in async, you can use a callback Promise or an Observable
+    they are from the RxJS library
+    fn returns an Observable<Hero[]> that emits a single value, the array of mock heroes.
+    Observable.suscribe() is the async solution here
+    files: hero.service.ts
+           heroes.component.ts
+
+180°
+           
+    
+    
