@@ -14,6 +14,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 // <!--23-->
 import { catchError, map, tap } from 'rxjs/operators';
 // <!---->
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+//make sure the decorator comes right before the class nothing in between
 @Injectable({
   providedIn: 'root'
 })
@@ -26,13 +30,13 @@ export class HeroService {
         // <!---->
 
         ) {}
-private log(message: string) {
-  this.messageService.add(`HeroService: ${message}`);
-}
-private heroesUrl = 'api/heroes';  // URL to web api
-// getHeroes (): Observable<Hero[]> {
-//     return this.http.get<Hero[]>(this.heroesUrl)
-// }
+    private log(message: string) {
+      this.messageService.add(`HeroService: ${message}`);
+    }
+    private heroesUrl = 'api/heroes';  // URL to web api
+    // getHeroes (): Observable<Hero[]> {
+    //     return this.http.get<Hero[]>(this.heroesUrl)
+    // }
     //<!--23-->
     private handleError<T> (operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {
@@ -61,6 +65,12 @@ private heroesUrl = 'api/heroes';  // URL to web api
           tap(_ => this.log('fetched heroes')),
           catchError(this.handleError<Hero[]>('getHeroes', []))
         );
+    }
+    updateHero (hero: Hero): Observable<any> {
+      return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
+        tap(_ => this.log(`updated hero id=${hero.id}`)),
+        catchError(this.handleError<any>('updateHero'))
+      );
     }
     // <!---->
     

@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 // <!--22-->
 import { HttpClientModule }    from '@angular/common/http';
+// import { HeroService } from './hero.service';
 // <!---->
 
 @NgModule({
