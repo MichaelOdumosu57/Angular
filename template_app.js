@@ -12,7 +12,7 @@ const cors = require('cors')
 app.use(compression())
 app.use(cors())
 
-const heroes = [
+var heroes = [
   { id: 11, name: 'Mr. Nice' },
   { id: 12, name: 'Narco' },
   { id: 13, name: 'Bombasto' },
@@ -92,6 +92,12 @@ app.post('/api/heroes/',function (req, res, next) {
       });
     });
     
+})
+
+app.delete('/api/heroes/:id', function (req, res, next) {
+    console.log(req.params.id)
+    heroes = heroes.filter((x) => x.id !== +req.params.id)
+    res.send(null)
 })
 
 

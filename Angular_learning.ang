@@ -299,3 +299,14 @@ the css is like regular HTML programming added it to apply  a style
     
     file: /src/app/heroes.component.html
           /src/app/heroes.component.ts
+          /src/hero.service.ts
+          /template_app.js
+          
+270
+    <!--26-->
+    lets delete heroes
+    
+        files:/src/app/heroes.component.html
+          /src/app/heroes.component.ts
+          /src/hero.service.ts
+          /template_app.js
