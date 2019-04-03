@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 // <!--22-->
 import { HttpClientModule }    from '@angular/common/http';
+import { HeroSearchComponent } from './hero-search/hero-search.component';
 // import { HeroService } from './hero.service';
 // <!---->
 
@@ -19,7 +20,8 @@ import { HttpClientModule }    from '@angular/common/http';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeroSearchComponent
   ],
   imports: [
     BrowserModule,

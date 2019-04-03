@@ -9,6 +9,9 @@ const multer = require('multer'); // v1.0.5
 const upload = multer(); // for parsing multipart/form-data
 const compression = require('compression')
 const cors = require('cors')
+const search = require('./search.js')
+
+
 app.use(compression())
 app.use(cors())
 
@@ -28,9 +31,9 @@ var heroes = [
 var update;// used to update my little DB
 var add;//used to add a new hero to my little DB
 var max = -Infinity
-    
 
-app.get('/api/heroes', function (req, res, next) {
+
+app.get('/api/heroes', search(heroes),function (req, res, next) {
 
 	res.send(heroes)
 });
@@ -51,6 +54,7 @@ app.get('/api/heroes/:id', function (req, res, next) {
         
     }
 });
+
 
 app.put('/api/heroes/',function (req, res, next) {
     req.on('data', (chunk) => {
@@ -102,4 +106,5 @@ app.delete('/api/heroes/:id', function (req, res, next) {
 
 
 
-app.listen(port, () => console.log(`${file_name} app listening on port ${port}!`))
+
+app.listen(port, () => console.log(`${file_name} app listening on port ${port}`))

@@ -293,7 +293,7 @@ the css is like regular HTML programming added it to apply  a style
         /src/app/heroes.component.html
         /src/app/heroes.component.ts
     
-270
+270°
     <!--25-->
     so add the button to do it
     
@@ -302,7 +302,7 @@ the css is like regular HTML programming added it to apply  a style
           /src/hero.service.ts
           /template_app.js
           
-270
+270°
     <!--26-->
     lets delete heroes
     
@@ -310,3 +310,29 @@ the css is like regular HTML programming added it to apply  a style
           /src/app/heroes.component.ts
           /src/hero.service.ts
           /template_app.js
+          
+270°
+    <!--27-->
+    a search of services
+    ng generate component hero-search
+    files:hero.service.ts
+        dashboard.component.html
+        hero-search.component.html
+        
+270°
+    <!--28-->
+    <li *ngFor="let hero of heroes$ | async" >
+    $ shows heroes is an Observable
+    seems like you have to declare it in its class file
+    the async suscribes so you dont have to try
+        files: hero-search.component.html
+                 hero-search.component.ts
+                 
+270°
+    <!--29-->
+    A Subject is both a source of observable values and an Observable itself.
+    you can suscribe
+    you can push values using next method
+    this is useful for something
+    file:hero-detail.component
+    

@@ -92,6 +92,18 @@ export class HeroService {
       );
     }
     // <!---->
+    // <!--27-->
+    searchHeroes(term: string): Observable<Hero[]> {
+      if (!term.trim()) {
+        // if not search term, return empty hero array.
+        return of([]);
+      }
+      return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+        tap(_ => this.log(`found heroes matching "${term}"`)),
+        catchError(this.handleError<Hero[]>('searchHeroes', []))
+      );
+    }
+    // <!---->
 // <!---->
 //  constructor() { }
     /* <!--10-->
