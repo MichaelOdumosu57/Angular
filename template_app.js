@@ -26,6 +26,8 @@ const heroes = [
 ];
 
 var update;// used to update my little DB
+var add;//used to add a new hero to my little DB
+var max = -Infinity
     
 
 app.get('/api/heroes', function (req, res, next) {
@@ -51,7 +53,6 @@ app.get('/api/heroes/:id', function (req, res, next) {
 });
 
 app.put('/api/heroes/',function (req, res, next) {
-    console.log('put request')
     req.on('data', (chunk) => {
       setImmediate(() => {
           if(   req.body === undefined   ) req.body = ''
@@ -72,6 +73,25 @@ app.put('/api/heroes/',function (req, res, next) {
       });
     });
     res.send(null)
+})
+
+app.post('/api/heroes/',function (req, res, next) {
+    req.on('data', (chunk) => {
+      setImmediate(() => {
+          if(   req.body === undefined   ) req.body = ''
+          req.body += chunk;
+      });
+    });
+    req.on('end', () => {
+      setImmediate(() => {
+            heroes.map(   (x)  => x.id > max ? max = x.id:null   )
+            add = JSON.parse(   req.body   )
+            add.id = max + 1
+            heroes.push(   add   )
+            res.send(add)
+      });
+    });
+    
 })
 
 

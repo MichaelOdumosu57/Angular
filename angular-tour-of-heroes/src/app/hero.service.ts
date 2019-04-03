@@ -73,7 +73,14 @@ export class HeroService {
       );
     }
     // <!---->
-    
+    // <!--25-->
+    addHero (hero: Hero): Observable<Hero> {
+      return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
+        tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
+        catchError(this.handleError<Hero>('addHero'))
+      );
+    }
+    // <!---->
 // <!---->
 //  constructor() { }
     /* <!--10-->

@@ -285,7 +285,7 @@ the css is like regular HTML programming added it to apply  a style
         the data to update (the modified hero in this case)
         options - consist of the header to send in the request
     
-    so add the button to do it
+
     file:/src/app/hero.service.ts
         /src/app/hero-detail.component.html
         /src/app/hero-detail.component.ts
@@ -294,7 +294,8 @@ the css is like regular HTML programming added it to apply  a style
         /src/app/heroes.component.ts
     
 270
-    <!--24-->
+    <!--25-->
     so add the button to do it
     
-    
+    file: /src/app/heroes.component.html
+          /src/app/heroes.component.ts
