@@ -4,9 +4,10 @@ const port = 3000
 const file_name = __filename.split("/")[__filename.split("/").length-1].split(".js")[0]
 const path = require('path')
 const fs = require('fs');
-const bodyParser = require('body-parser');
-const multer = require('multer'); // v1.0.5
-const upload = multer(); // for parsing multipart/form-data
+// const bodyParser = require('body-parser');
+// const multer = require('multer'); // v1.0.5
+// const upload = multer(); // for parsing multipart/form-data
+const backend = express.Router()
 const compression = require('compression')
 const cors = require('cors')
 const search = require('./search.js')
@@ -32,13 +33,13 @@ var update;// used to update my little DB
 var add;//used to add a new hero to my little DB
 var max = -Infinity
 
-
-app.get('/api/heroes', search(heroes),function (req, res, next) {
+app.use('/backend',backend)
+backend.get('/api/heroes', search(heroes),function (req, res, next) {
 
 	res.send(heroes)
 });
 
-app.get('/api/heroes/:id', function (req, res, next) {
+backend.get('/api/heroes/:id', function (req, res, next) {
     console.log(   typeof(   req.params.id   )   )
     for(   i of heroes   ){
         
@@ -56,7 +57,7 @@ app.get('/api/heroes/:id', function (req, res, next) {
 });
 
 
-app.put('/api/heroes/',function (req, res, next) {
+backend.put('/api/heroes/',function (req, res, next) {
     req.on('data', (chunk) => {
       setImmediate(() => {
           if(   req.body === undefined   ) req.body = ''
@@ -79,7 +80,7 @@ app.put('/api/heroes/',function (req, res, next) {
     res.send(null)
 })
 
-app.post('/api/heroes/',function (req, res, next) {
+backend.post('/api/heroes/',function (req, res, next) {
     req.on('data', (chunk) => {
       setImmediate(() => {
           if(   req.body === undefined   ) req.body = ''
@@ -98,7 +99,7 @@ app.post('/api/heroes/',function (req, res, next) {
     
 })
 
-app.delete('/api/heroes/:id', function (req, res, next) {
+backend.delete('/api/heroes/:id', function (req, res, next) {
     console.log(req.params.id)
     heroes = heroes.filter((x) => x.id !== +req.params.id)
     res.send(null)

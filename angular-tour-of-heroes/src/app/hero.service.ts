@@ -33,7 +33,7 @@ export class HeroService {
     private log(message: string) {
       this.messageService.add(`HeroService: ${message}`);
     }
-    private heroesUrl = 'api/heroes';  // URL to web api
+    private heroesUrl = '/backend/api/heroes';  // URL to web api
     // getHeroes (): Observable<Hero[]> {
     //     return this.http.get<Hero[]>(this.heroesUrl)
     // }
@@ -96,6 +96,7 @@ export class HeroService {
     searchHeroes(term: string): Observable<Hero[]> {
       if (!term.trim()) {
         // if not search term, return empty hero array.
+        console.log('crash')
         return of([]);
       }
       return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(

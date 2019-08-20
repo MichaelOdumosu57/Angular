@@ -1,0 +1,84 @@
+building angular apps with internalization
+
+
+T9N
+
+translate one language to another
+
+L10N
+
+translating internationalized (point out specific locales, dialiect)
+
+I18N
+
+designing app to be made for different locales
+
+all of this is G11N (globalization)
+
+
+Fist Names last name
+
+    use a function with language locale
+
+
+118n impt for
+    critical error function
+    
+
+translating angular app
+
+moment JS(dates & times) gr8 for translation
+ngx-translate
+GlobalizeJS
+i18next (can use with vue backbone)
+
+get this
+4 phases of angular i18n
+
+mark staic text for translation
+just include i18n attribute
+
+<h1 i18n>
+    Dolphins & Whales are Awesome!
+</h1>
+
+focus on pluralization
+
+
+
+extract
+
+Angular uses a library places them in a .xlf file in a locale folder, for translation
+
+
+4 rebuild your app
+
+
+
+Keyboards are important because there are different in
+keep them alphanumeric avoids many problems
+
+
+Sorting Filtering
+use String.prototype.localeCompare()
+
+
+Design Layout and UX
+
+    allow for expansion
+    for english words, allow for 300% expansion
+
+    Font Size and Emphasis
+        use wider fonts size, (don not use italics and bold, they dont render everywhere)
+
+
+    rtl ltr tell her about document.ltr rtl
+
+    
+    keep graphics out of text, symbols mean different in different languages
+    also colors have different meaning
+
+    dont use flags to represent lanuages or locales, different lanuges in different places
+
+    BEWARE of MAPS, it means a lot to governments
+    
