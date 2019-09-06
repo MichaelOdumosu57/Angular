@@ -82,3 +82,93 @@ Design Layout and UX
 
     BEWARE of MAPS, it means a lot to governments
     
+
+
+tell her about document.dir
+and those 4 steps
+
+
+scale  simple sttraighted, everything has a single responsilbe
+give everything  the  space its needs
+
+google single responbisblity prinicple
+use bootstrap
+
+
+
+
+
+Building an Angular library
+
+
+
+to create an emppty workspace
+ng new magic-strings --create-application-false
+
+
+to create library
+    give a unique prefix so you dont see it everywhere
+ng g library magic-strings --prefix=nk
+
+
+ng-package impt
+
+
+to generate an application (the common one we know)
+ng g application magic-strings-example
+
+ng serve magic-strings-example
+
+ng build magic-string
+
+
+
+
+every time you change your library you must rebuild it
+ng build magic string (you can put it in package.json)
+
+
+Build something useful
+
+
+in
+
+libraries/magic-strings/projects/magic-string/src/lib/magic-string.component.ts
+
+
+publish libaray
+build library use npm
+go into dist [library name] run npm pack
+
+go another angular app take dist in zipped library through it in there
+npm install [whoile library zipped]
+check package.json its a node module now
+place it in app.module then in a component as a tag in an html
+
+use package.json scripts to help build many aux files (README.md) for your library
+
+
+
+to publish
+give a unique name
+
+npm login >>
+npm publish
+
+after 72 hours you cannot take off your app
+
+
+use workspaces, and libraries not apps you reuse
+
+use ng build to develop your library
+go into dist and run npm pack
+
+use npm install into another app
+or npm publish
+
+
+nir.life for any help
+
+webstore IDE for file watching
+
+he will publish this code on github

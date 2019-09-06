@@ -3,7 +3,7 @@
 
 module.exports = function (config) {
   config.set({
-    // basePath: '/karma',
+    basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
@@ -25,17 +25,8 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_DEBUG,
     autoWatch: true,
-    browsers: ['ChromeHeadless'],
+    browsers: ['Chrome'],
     singleRun: false,
-    restartOnFileChange: true,
-    listenAddress:'0.0.0.0',
-    hostname:'0.0.0.0',
-    // upstreamProxy:{
-    //     path:'/'
-    // },
-    // customContextFile:'customContextFile.html',
-    // urlRoot: '/karma'
+    restartOnFileChange: true
   });
 };
-
-

@@ -1,5 +1,11 @@
+
+
 template
 90° 90°
+
+
+90° update yr angular project90°
+https://medium.com/panya-studio-engineering/angular-cli-update-issues-manually-update-your-angular-project-ba0b1ea1c727
 
 90° Learning Angular 90°
 
@@ -9,6 +15,7 @@ so it can rebuild properly
 
 for a free angular host
 https://stackblitz.com/
+
 
 
 
@@ -320,7 +327,7 @@ the css is like regular HTML programming added it to apply  a style
         
 270°
     <!--28-->
-    <li *ngFor="let hero of heroes$ | async" >
+    // <li *ngFor="let hero of heroes$ | async"" |" >
     $ shows heroes is an Observable
     seems like you have to declare it in its class file
     the async suscribes so you dont have to try
@@ -334,4 +341,80 @@ the css is like regular HTML programming added it to apply  a style
     you can push values using next method
     this is useful for something
     file:hero-detail.component
+    
+
+
+90°
+    Testing
+
+180°
+    Setup
+        Angular installs everything
+        in angular-tour-of-heroes
+
+    run ng test
+    its builds the app in watch mode and launches karma test runner
+    
+    It seems I have to access it on my own computer
+
+    https://karma-runner.github.io/4.0/config/configuration-file.html
+    for my config use ChromeHeadless, and the listen address and host name to public so I can see it better
+    and the app wants to take some files form [origin]/absolute/[root] so route your proxy to deal with URL approrpaites
+    so that url redirects to the root of the OS FS
+
+    if you look in all the componenet.spec.ts files you can see the testing software the jasmine is reporting and karma is running
+    
+90° CircleCI
+
+180°
+    Setup
+    well will be using vendorly angular
+    make the config.yml
+    copy and paste
+    
+180°
+    testing config file setup
+    in karma.conf.js
+    and make protractor-ci.conf.js which extends the original protractor.conf.js
+    
+        
+90° Enable code coverage,
+
+    this means that angular itself is working properly
+    ng test --no-watch --code-coverage --browsers=ChromeHeadlessCI
+    
+    when you run this a folder called coverage is made in root it has an index.html for more details
+    
+    if you want code coverage everytime u test in angular.json
+    
+        "test": {
+          "options": {
+            "codeCoverage": true
+          }
+        }
+        
+180° Code coverage enforement
+    
+    if your team does not want to test everything u can set a percentage
+    ex for 80%
+    
+    in karma.conf.js
+    
+        coverageIstanbulReporter: {
+          reports: [ 'html', 'lcovonly' ],
+          fixWebpackSourcePaths: true,
+          thresholds: {
+            statements: 80,
+            lines: 80,
+            branches: 80,
+            functions: 80
+          }
+        }
+            
+    the code coverage enforcement is only 80%
+    
+90° Service Tests
+
+
+    
     
