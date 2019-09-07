@@ -628,6 +628,11 @@ we gotta make our own test
     then at this point place all your jasmine tests in specs
 
     
+360° nativeElement
+
+    its has the type of any type also DebugElement.nativeElement has the fixture of any type
+    at compile tile this might be a WebWorker or some server side when the respective class is diminished
+    however the tests here always run in a browser environment so <any> means HTMLElement
     
     
         
