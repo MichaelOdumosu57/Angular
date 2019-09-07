@@ -415,6 +415,157 @@ the css is like regular HTML programming added it to apply  a style
     
 90° Service Tests
 
+angular says they are the easiest 2 test
+refer to app/demo.service files
+
+
+180° Services with dependencies
+
+    refer  app/dependencyService
+
+360°
+    sometimes beforeEach does not reset the env when the step is too simple like setting a var to null
+    also refer to the spy in the spec.ts to really understand how spies are used, createSpyObj is more like, generating your own function to follow
+    spies are ususally the easiest way to mock services
+    
+    
+180° TestBed and services
+    as a service tester you must think about the constructor when mocking services, whether to make ur own or try to grab the actual  injected services. however Testbed takes care of order
+    
+
+90° Angular Testbed
+    The TestBed is the most important of the Angular testing utilities. The TestBed creates a dynamically-constructed Angular test module that emulates an Angular @NgModule.
+    
+180° testing singular services
+    refer app/testbedDep
+    
+    
+180° testing dependencies
+    
+    its broken
+
+
+
+
+180° not using before each
+    
+    function setup() {
+      const valueServiceSpy =
+        jasmine.createSpyObj('ValueService', ['getValue']);
+      const stubValue = 'stub value';
+      const masterService = new MasterService(valueServiceSpy);
+    
+      valueServiceSpy.getValue.and.returnValue(stubValue);
+      return { masterService, stubValue, valueServiceSpy };
+    }
+    
+dont set global vars in the body of the describe
+
+in your spec
+
+it('#getValue should return stubbed value from a spy', () => {
+//
+  const { masterService, stubValue, valueServiceSpy } = setup();
+  //
+  expect(masterService.getValue())
+    .toBe(stubValue, 'service returned stub value');
+  expect(valueServiceSpy.getValue.calls.count())
+    .toBe(1, 'spy method was called once');
+  expect(valueServiceSpy.getValue.calls.mostRecent().returnValue)
+    .toBe(stubValue);
+});
+
+90° Testing HTTP services
+
+make it ackts asynv because tht wht happens, but dont do this just make the XHR call
+
+
+let httpClientSpy: { get: jasmine.Spy };
+let heroService: HeroService;
+
+beforeEach(() => {
+  // TODO: spy on other methods too
+  httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+  heroService = new HeroService(<any> httpClientSpy);
+});
+
+it('should return expected heroes (HttpClient called once)', () => {
+  const expectedHeroes: Hero[] =
+    [{ id: 1, name: 'A' }, { id: 2, name: 'B' }];
+
+  httpClientSpy.get.and.returnValue(asyncData(expectedHeroes));
+
+  heroService.getHeroes().subscribe(
+    heroes => expect(heroes).toEqual(expectedHeroes, 'expected heroes'),
+    fail
+  );
+  expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
+});
+
+it('should return an error when the server returns a 404', () => {
+  const errorResponse = new HttpErrorResponse({
+    error: 'test 404 error',
+    status: 404, statusText: 'Not Found'
+  });
+
+  httpClientSpy.get.and.returnValue(asyncError(errorResponse));
+
+  heroService.getHeroes().subscribe(
+    heroes => fail('expected an error, not heroes'),
+    error  => expect(error.message).toContain('test 404 error')
+  );
+});
+
+
+180°  HttpClientTestingModule
+
+    actual XHR might be very difficults
+    https://angular.io/guide/http#testing-http-requests
+    
+
+
+90° Component Test Basics
+
+    a component is a html tempalte with a typescript class
+    however you dont need Angular to load it in the DOM to properly test it , just look at the class
+    angular testbed deals with this
+
+
+180°  Component Class Testing
+
+@Component({
+  selector: 'lightswitch-comp',
+  template: `
+    <button (click)="clicked()">Click me!</button>
+    <span>{{message}}</span>`
+})
+export class LightswitchComponent {
+  isOn = false;
+  clicked() { this.isOn = !this.isOn; }
+  get message() { return `The light is ${this.isOn ? 'On' : 'Off'}`; }
+}
+
+
+to test it get an instance and play with it
+
+describe('LightswitchComp', () => {
+  it('#clicked() should toggle #isOn', () => {
+    const comp = new LightswitchComponent();
+    expect(comp.isOn).toBe(false, 'off at first');
+    comp.clicked();
+    expect(comp.isOn).toBe(true, 'on after click');
+    comp.clicked();
+    expect(comp.isOn).toBe(false, 'off after second click');
+  });
+ })
+ 
+
+to test some functionality
+
+we gotta make our own test
+    
+    
+
 
     
     
