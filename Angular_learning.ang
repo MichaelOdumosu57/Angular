@@ -563,6 +563,15 @@ describe('LightswitchComp', () => {
 to test some functionality
 
 we gotta make our own test
+
+
+
+180°  Components with dependencies
+    look at welcome component
+    
+    so basically the service and the component both need to be inside spec, you can activate the lifecycle hook by simple calling the fn lol
+    
+    
     
     
 
