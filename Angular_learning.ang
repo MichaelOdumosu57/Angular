@@ -572,6 +572,65 @@ we gotta make our own test
     so basically the service and the component both need to be inside spec, you can activate the lifecycle hook by simple calling the fn lol
     
     
+180°  Component DOM testing
+    
+    class only tests cannot
+        tell you if the component is going to render properly,
+        respond to user input and gestures,
+        or integrate with its parent and child components.
+        
+    to simulate DOM interaction use TestBed interactions
+    
+    
+270°  CLI-generated tests
+
+    focus on banner component
+    generate a compoent like this
+    
+    so in the testing file, everything but the actual spec creates and sets up for Mock DOM
+    
+ 
+360° Reduce the setup
+
+    make it look like the sectiong between
+    
+    so here
+    
+    TestBed.configureTestingModule({
+      declarations: [ BannerComponent ]
+    });
+    testBed sees we need the testingComponent
+    
+    and from there thats it, there are other modules that know what to do
+    
+
+360° createComponent()
+
+    after that tiny config you call its createComponent()
+        creates instance
+        adds the element to test-runner DOM,
+        returns a component Fixture
+        
+    do not reconfigure TestBed after calling this
+    the definition is frozen after the invocation
+    do not call any TestBed conf such as configureTestingModule(), nor get(), nor any of the override... methods. or u get an error
+    const fixture = TestBed.createComponent(BannerComponent);
+    
+360° ComponentFixture()
+
+    its how u interact with the element as a DOM
+    to confirm it exists with jasmine
+            
+        const component = fixture.componentInstance;
+        expect(component).toBeDefined()
+            
+360° beforeEach()
+    then at this point place all your jasmine tests in specs
+
+    
+    
+    
+        
     
     
 
