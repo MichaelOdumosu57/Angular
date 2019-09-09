@@ -633,8 +633,165 @@ we gotta make our own test
     its has the type of any type also DebugElement.nativeElement has the fixture of any type
     at compile tile this might be a WebWorker or some server side when the respective class is diminished
     however the tests here always run in a browser environment so <any> means HTMLElement
+    so you can use querySelector
     
     
+360° debugElement
+    
+    we have
+    const bannerDe: DebugElement = fixture.debugElement;
+    const bannerEl: HTMLElement = bannerDe.nativeElement;
+    
+    this element is used for global support, it returns platform specific
+    
+    you need to grab it from @angular/core
+    
+360° By.css()
+
+    some apps might run on a different platform and u dont get the full Element API
+     debugElement has its own querySelector protocol
+     it methods that take predicates and returns node when theres a match
+    heres how to make a  predicate
+    
+    import { By } from '@angular/platform-browser';
+    
+    it('should find the <p> with fixture.debugElement.query(By.css)', () => {
+      const bannerDe: DebugElement = fixture.debugElement;
+      const paragraphDe = bannerDe.query(By.css('p'));
+      const p: HTMLElement = paragraphDe.nativeElement;
+      expect(p.textContent).toEqual('banner works!');
+    });
+        
+
+    so whats happening
+    
+        The By.css() static method selects DebugElement nodes with a standard CSS selector.
+        The query returns a DebugElement for the paragraph.
+        You must unwrap that result to get the paragraph element.
+        
+    use this method over querySelector its overkill
+    
+
+
+180° Component Test Scenarios
+    
+  
+270° Component binding
+
+@Component({
+  selector: 'app-banner',
+  template: '<h1>{{title}}</h1>',
+  styles: ['h1 { color: green; font-size: 350%}']
+})
+export class BannerComponent {
+  title = 'Test Tour of Heroes';
+}
+    
+so we need to find out if title ends up in the interploation
+
+
+
+let component: BannerComponent;
+let fixture:   ComponentFixture<BannerComponent>;
+let h1:        HTMLElement;
+
+beforeEach(() => {
+  TestBed.configureTestingModule({
+    declarations: [ BannerComponent ],
+  });
+  fixture = TestBed.createComponent(BannerComponent);
+  component = fixture.componentInstance; // BannerComponent test instance
+  h1 = fixture.nativeElement.querySelector('h1');
+ 
+});
+
+360° detectChanges()
+
+at this point you need change dectection for the interpolation bind to occur
+you must tell TestBed to detect changes, good so you can inspect things before the change
+
+
+it('should display original title after detectChanges()', () => {
+  fixture.detectChanges();
+  expect(h1.textContent).toContain(component.title);
+});
+
+
+it('should display a different test title', () => {
+  component.title = 'Test Title';
+  fixture.detectChanges();
+  expect(h1.textContent).toContain('Test Title');
+});
+
+360°  Change an input value with dispatchEvent()
+
+angular testing is not too good at detecting changes
+to simulate user input
+  // simulate user entering a new name into the input box
+  nameInput.value = 'quick BROWN  fOx';
+
+  // dispatch a DOM event so that Angular learns of input value change.
+  nameInput.dispatchEvent(newEvent('input'));
+
+  // Tell Angular to update the display binding through the title pipe
+  fixture.detectChanges();
+  
+  
+270° Component with external files
+
+    so in inline they way to access the html and css is
+    
+    @Component.template and @Component.styles properties respectively, as the following variant of BannerComponent does.
+    
+    so in extenal how u access is
+    
+    @Component.templateUrl and @Component.styleUrls properties respectively, as the following variant of BannerComponent does.
+    
+    inside the cli its not a problem
+    
+    in plunker ull get this
+    
+    Error: This test module uses the component BannerComponent
+    which is using a "templateUrl" or "styleUrls", but they were never compiled.
+    Please call "TestBed.compileComponents" before your test.
+    
+    
+270° Calling compileComponents()
+
+    TestBed.createComponent() is called and there are extenral files, they are being read in async
+    
+    call it in an async fn like this
+    
+    
+    import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+    
+        beforeEach(async(() => {
+          TestBed.configureTestingModule({
+            declarations: [ BannerComponent ],
+          })
+          .compileComponents();  // compile template and css
+        }));
+            
+          
+        Make compileComponents() the last step before calling TestBed.createComponent().
+        Dont reconfigure testBed after calling compileComponents()
+        
+360° The synchronous beforeEach()
+
+
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(BannerComponent);
+      component = fixture.componentInstance; // BannerComponent test instance
+      h1 = fixture.nativeElement.querySelector('h1');
+    });
+            
+      
+   or do this all with a promise
+
+
+
+            
         
     
     
