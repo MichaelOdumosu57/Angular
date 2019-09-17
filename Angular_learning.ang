@@ -341,11 +341,270 @@ the css is like regular HTML programming added it to apply  a style
     you can push values using next method
     this is useful for something
     file:hero-detail.component
-    
+
+
 
 
 90°
+    Lifecycle Hooks
+
+    the pseudo summary of the life cycle hook
+    Angular creates it, renders it, creates and renders its children, checks it when its data-bound properties change, and destroys it before removing it from the DOM. the lifecycle hooks give u access to the data at these events
+
+
+180°
+    LifeCycle Sequence
+    
+    ngOnChanges() receives a SimpleChanges Object
+        Called before ngOnInit() and whenever one or more data-bound input properties change.
+        
+    ngOnInit() the DOM knows about the component
+    
+    ngDoCheck() Detect and act upon changes that Angular can't or won't detect on its own. called during every change detection run immediately after ngOnChanges()
+    
+    ngAfterContentInit() - called after first ngDoCheck(), after the content made all needed XHR
+    
+    ngAfterContentChecked() - called after Angular checks the component XHR results, made after every ngDoCheck
+    
+    ngAfterViewInit() - after angular makes views for component and its children
+    
+    ngAfterViewChecked() - after angular checks the compoent views
+    
+    ngOnDestroy() - Cleanup just before Angular destroys the directive/component. Unsubscribe Observables and detach event handlers to avoid memory leaks. called just before angular destory the directive component
+    
+360°
+
+    Other Angular lifecycle hooks (they are in 3rd party libraries)
+   
+180°
+
+    Lifecycle Examples
+    
+    keep logic in hooks as lean as possible they fire often
+    
+180°
+    Spying OnInit and OnDestroy
+
+  @Directive({selector: '[mySpy]'})
+export class SpyDirective implements OnInit, OnDestroy {
+
+  constructor(private logger: LoggerService) { }
+
+  ngOnInit()    { this.logIt(`onInit`); }
+
+  ngOnDestroy() { this.logIt(`onDestroy`); }
+
+  private logIt(msg: string) {
+    this.logger.log(`Spy #${nextId++} ${msg}`);
+  }
+}
+
+by doing this  you can initalize and destory compoents the  same time the happen to elements
+
+
+270°
+    use ngOnInit for 2 main reasons
+    
+    to setup complex inits
+    to setup the component after augular takes care of input,
+    
+    avoid doing this in the constructor
+    
+    ngOnChanges() is first chance to access  directive's data-bound input properties
+    
+270°
+    OnDestroy()
+    can tell your app a component is disappearing, unsuscribe from DOM events, stop interval timers, unregister all callbacks
+    unregister all callbacks
+    
+270°
+    OnChanges()
+    is triggerd whenever it detects changes to its input properties of the component or directive
+    
+    on changes component
+
+@Input() hero: Hero;
+@Input() power: string;
+    
+ngOnChanges(changes: SimpleChanges) {
+  for (let propName in changes) {
+    let chng = changes[propName];
+    let cur  = JSON.stringify(chng.currentValue);
+    let prev = JSON.stringify(chng.previousValue);
+    this.changeLog.push(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
+  }
+}
+
+
+html
+<on-changes [hero]="hero" [power]="power"></on-changes>
+
+onChanges does not work with objects well becuase its look for a change in the refenece to the object keep this in mind
+
+270°
+    DoCheck()
+    detect and act on changes angular does not deal with
+    called several times watch out
+    
+    
+    
+180°
+    AfterView
+
+270°
+    AfterViewInit()   ngAfterViewChecked()
+    you can grant access access child compoenets like this
+
+ @ViewChild(ChildViewComponent, {static: false}) viewChild: ChildViewComponent;
+
+and work with them in those lifecycle hooks
+
+
+thers an impt unidirectional data flow
+ LoggerService.tick_then() postpones the log update for one turn of the browser's JavaScript cycle 
+
+this needs to happen because a view cannot update at the same time it was composed, you need in this case 1 cycle of the event
+loop for things to be ok or else Angular throws an error
+
+
+
+180°
+    AfterContent
+    about  AfterContentInit()  and AfterContentChecked()
+
+270°
+    Content projection
+    takes outside HTML content and brings it into the component (for AngularJS,this is know as transclusion)
+
+    Never put content between a component's element tags unless you intend to project that content into the component.
+  
+
+so here
+
+ `
+  <div>-- projected content begins --</div>
+    <ng-content></ng-content>
+  <div>-- projected content ends --</div>`
+
+child apps get attached to ng-content
+
+270°
+    AfterContent hooks
+
+    the diffrence between  AfterContent and  AfterView    
+    after view looks at children explicitly nested in the component
+    afterContent looks at the children angular projected into the component
+    
+    ex
+    
+    export class AfterContentComponent implements AfterContentChecked, AfterContentInit {
+      private prevHero = '';
+      comment = '';
+    
+      // Query for a CONTENT child of type `ChildComponent`
+      @ContentChild(ChildComponent, {static: false}) contentChild: ChildComponent;
+    
+      ngAfterContentInit() {
+        // contentChild is set after the content has been initialized
+        this.logIt('AfterContentInit');
+        this.doSomething();
+      }
+    
+      ngAfterContentChecked() {
+        // contentChild is updated after the content has been checked
+        if (this.prevHero === this.contentChild.hero) {
+          this.logIt('AfterContentChecked (no change)');
+        } else {
+          this.prevHero = this.contentChild.hero;
+          this.logIt('AfterContentChecked');
+          this.doSomething();
+        }
+      }
+      // ...
+    }
+
+
+180°
+      there are no unidirectional flow worries with AfterContent
+
+
+
+90°
+    Template Syntax
+
+
+180°
+    HTML in templates
+
+    Angular uses everything except for <script> tags, they are not javascript
+    no point for <html>, <body>, and <base> 
+    u extend yr HTML with component directive
+    
+180°
+    Interpolation and Template Expressions
+    
+        
+270°
+    Interpolation {{...}}
+    valid examples
+
+    <h3>Current customer: {{ currentCustomer }}</h3>
+
+    <div><img src="{{itemImageUrl}}"></div>
+    
+
+
+
+
+
+  
+
+    
+
+
+
+
+
+    
+    
+    
+    
+    
+
+
+
+90°
+    Workspace npm dependencies
+
+    all dependencies ar through npm
+    
+package.json
+The package.json is organized into two groups of packages:
+
+Dependencies are essential to running applications.
+DevDependencies are only necessary to develop applications.
+
+180°
+    Dependencies
+    Angular packages: Angular core and optional modules; their package names begin @angular/.
+    
+    Support packages: 3rd party libraries that must be present for Angular apps to run.
+    
+    Polyfill packages: Polyfills plug gaps in a browser's JavaScript implementation.
+    
+    to add a new dependency use ng add
+    
+270°
+    DevDependencies
+    packages that help you develop yr app you dont launch them on production
+    to add a dependency npm install --dev <package-name>
+    check em out
+    
+
+    
+90°
     Testing
+    
 
 180°
     Setup
@@ -791,7 +1050,14 @@ to simulate user input
 
 
 
-            
+83
+to add multiple template bindings
+You can use the <ng-container> helper element for that.
+
+<ng-container *ngFor="let item of headerItems" >
+ <td *ngIf="item.visible">{{ item?.name }}</td>
+</ng-container>
+It is not added to the DOM.
         
     
     
