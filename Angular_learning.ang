@@ -3,6 +3,8 @@
 template
 90° 90°
 
+45° are tips
+
 
 90° update yr angular project90°
 https://medium.com/panya-studio-engineering/angular-cli-update-issues-manually-update-your-angular-project-ba0b1ea1c727
@@ -551,7 +553,238 @@ child apps get attached to ng-content
     <h3>Current customer: {{ currentCustomer }}</h3>
 
     <div><img src="{{itemImageUrl}}"></div>
+
+
+    <p>The sum of 1 + 1 is {{1 + 1}}.</p>  // the 1+1 is a template expression
+
+
+    <p>The sum of 1 + 1 is not {{1 + 1 + getVal()}}.</p>
+
+    angular evals the ... in {{}} converts to strings and concatenates to an element or directive property
+
     
+
+45°
+    If you'd like to use something other than {{ and }}, you can configure the interpolation delimiter via the interpolation option in the Component metadata.
+
+270°
+    Template expressions
+
+    they are evel expr in {{}}, that must appear to the right of the = in property binding
+    
+    template syntax is like js however you cannot
+  
+        Assignments (=, +=, -=, ...)
+        Operators such as new, typeof, instanceof, etc.
+        Chaining expressions with ; or ,
+        The increment and decrement operators ++ and --
+        Some of the ES2015+ operators
+
+    also
+        No support for the bitwise operators such as | and &
+        New template expression operators, such as |, ?. and
+
+270°
+    Expression context
+    
+    anohter form of interpolation binding
+
+    <img [src]="itemImageUrl2">
+
+
+
+    <li *ngFor="let customer of customers">{{customer.name}}</li>
+
+    a template reference variable #customerInput
+    <input #customerInput>{{customerInput.value}}
+
+    try to only have 1 expression context however
+  
+
+360°
+    Expression guidelines
+    
+    Simplicity
+        leave all logic in the ts
+    
+    Quick execution
+        Angular executes template expressions after every change detection cycle, aka async work
+        to to cache results for expensive operations
+
+    No visible side effects
+        an expression or binding should only affect what is meant not anything else
+
+
+270°
+    Template statements
+    <button (click)="deleteHero()">Delete hero</button>
+
+
+    its like js where you can chain expression with ; and , but u cant
+        new
+        increment and decrement operators, ++ and --
+        operator assignment, such as += and -=
+        the bitwise operators | and &
+        the template expression operators
+
+360°
+    Statement context
+    its the component instance its the data that template statements have access to
+
+    you also have access to
+    
+    the event object, *ngFor looping, and the var identifying the element itself
+
+    <button (click)="onSave($event)">Save</button>
+    <button *ngFor="let hero o f heroes" (click)="deleteHero(hero)">{{hero.name}}</button>
+    <form #heroForm (ngSubmit)="onSubmit(heroForm)"> ... </form>
+
+
+360°
+    Statement guidelines
+    cant access global objects, dont do complex logic there
+
+
+270°
+    Binding Syntax an Overview
+    3 categories
+
+
+    From the source-to-view
+    From view-to-source
+    Two-way sequence: view-to-source-to-view
+    
+    go copy the list
+    
+
+360°
+    Data-binding and HTML
+  <!-- Bind button disabled state to `isUnchanged` property -->
+  <button [disabled]="isUnchanged">Save</button>
+              
+
+  works with properties of DOM elements, components, and directives not HTML attributes
+
+
+360°
+    HTML attribute vs. DOM property
+
+    A few HTML attributes have 1:1 mapping to properties; for example, id.
+    Some HTML attributes don't have corresponding properties; for example, aria-*.
+    Some DOM properties don't have corresponding attributes; for example, textContent.  
+
+
+    so attr are are to initalize DOM elements, HTML properties are subject to change
+
+
+45°
+    the only way to change attrs is with setAtttribute(), this also reinits corresponding DOM properites
+    look here to see differences https://developer.mozilla.org/en-US/docs/Web/API#Interfaces
+
+
+450°
+    an <input>
+    
+    so for value = Sarah, the HTML attribute renmains unchanged if you inspect the attribute with
+
+    input.getAttribute('value'), Sarah 
+
+    to get the DOM property u just grab it, so you see to get HTML attributes u needa special fn
+
+
+450°
+    a disabled attribute
+  
+    default is false, its presence makes it true 
+  
+  
+    <button disabled>Test Button</button>
+  
+    u cant get to the attribute like this however
+  
+    to control button state
+  
+    <input [disabled]="condition ? true : false">
+    <input [attr.disabled]="condition ? 'disabled' : null">
+  
+    but use proppety binding in state management
+
+
+360°
+    Binding types and targets
+
+
+property (element, component, or directive),
+    <img [src]="heroImageUrl">
+    <app-hero-detail [hero]="currentHero"></app-hero-detail>
+    <div [ngClass]="{'special': isSpecial}"></div>
+
+event (element, component, or directive),
+    <button (click)="onSave()">Save</button>
+    <app-hero-detail (deleteRequest)="deleteHero()"></app-hero-detail>
+    <div (myClick)="clicked=$event" clickable>click me</div>
+
+
+Two-way
+    <input [(ngModel)]="name">
+
+Attribute
+    <button [attr.aria-label]="help">help</button>
+
+
+Class
+    <div [class.special]="isSpecial">Special</div>
+
+
+Style
+    <button [style.color]="isSpecial ? 'red' : 'green'">
+
+
+    
+270°
+    Property binding [property]
+
+
+
+360°
+    One-way in
+    property binding only allows for one way from a component to a target, no element property reading or method calling
+
+
+    ex 
+    
+    to set element property to component property
+    <img [src]="itemImageUrl">
+  
+    https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableCellElement, have different names for attributes and properties
+
+    disabled? to compoonent property
+    <button [disabled]="isUnchanged">Disabled Button</button>
+
+
+    setting the property of a directive
+    <p [ngClass]="classes">[ngClass] binding to the classes property making this blue</p>
+
+360°
+    Binding Targets
+
+    its done like this
+    <img [src]="itemImageUrl">
+
+    can also do this
+    <img bind-src="itemImageUrl">
+
+
+    from parent component to child component
+    <app-item-detail [childItem]="parentItem"></app-item-detail>
+
+    
+
+    
+
+  
+
+
 
 
 

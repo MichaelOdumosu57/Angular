@@ -1,0 +1,52 @@
+Experimenting with Functions Rxjs
+
+
+90°
+    Rxjs is painful to get into
+   
+90°
+    Ionic
+    
+     mobile framework, 
+     now in version four works everywhere and IOS
+
+      focus on shadowDOM
+
+      create a web based mobile app quickly, 
+
+`     predesigned, compliation can be sent to clound
+
+
+180°
+    It feels the same on iOS and android
+    you running cordova, 
+
+180°
+     setup 
+     npm install -s ionic
+      
+      to build for iOS & Android
+      npm install -s cordova
+
+180°
+    File structure
+    just like angular    
+
+
+180°
+    so you can edit in real time
+    very much like Angular,
+    
+
+180°
+    alertController, Dependency Injection
+    a fn that takes an objecct, can use Inputs to allow for inputs
+    and a button
+
+90°
+    StencilJS
+    where your elements are
+
+180°
+    give access to mobile API
+
