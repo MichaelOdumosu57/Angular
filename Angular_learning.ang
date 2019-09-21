@@ -779,6 +779,54 @@ Style
     <app-item-detail [childItem]="parentItem"></app-item-detail>
 
     
+    avoid side effects and return the proper type
+
+45°
+    the brackets in property binding tell angular to evalute the expression
+
+
+One-time string initialization
+
+    omit brackets when
+    target prop wants a string
+    string is a fixed value u can place in the template
+    a const
+
+
+450°
+    Property binding vs. interpolation
+    only when , when setting an element property to a non-string data value, you must use property binding.
+
+450°
+    Content Security
+
+    ex.
+    evilTitle = 'Template <script>alert("evil never sleeps")</script> Syntax';
+    <p><span>"{{evilTitle}}" is the <i>interpolated</i> evil title.</span></p>
+
+    angular displays strings, angular wont execute scripts through property binding or interpolation
+    
+    onRender()
+    "Template alert("evil never sleeps") Syntax" is the interpolated evil title.
+    "Template alert("evil never sleeps")Syntax" is the property bound evil title.
+
+270°
+    Attribute, class, and style bindings
+
+360°
+    Attribute binding
+    ARIA & SVG  are only attributes so only thing u can do is attribute binding
+    to attribute bind
+    
+    attr.aria-label
+    
+    common mixiup
+    
+    colSpan -property
+    colspan -attribute
+
+360°
+    Class binding
 
     
 
